@@ -11,9 +11,156 @@ body{
     transform: translate(-50%,-50%);
     width: 90%;
     height: 90%;
-    border: 1px solid blue;
     background-image: url('./images/bg-main-desktop.png');
     background-repeat: no-repeat;
-    background-size: 30% 100%;
+    background-size: 35% 100%;
+}
+
+/* Front Card */
+.frontCard{
+    background-image: url('./images/bg-card-front.png');
+    background-repeat: no-repeat;
+    height: 245px;
+    width: 447px;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    color: white;
+}
+
+.circl{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100px;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+}
+
+.circ1{
+    background: white;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.circ2{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid white;
+    background: none;
+}
+
+/* Card Details */
+.cardNumber{
+    position: absolute;
+    left: 5%;
+    top: 45%;
+}
+
+.cardName{
+    position: absolute;
+    bottom: 0%;
+    left: 5%;
+}
+
+.cardDate{
+    position: absolute;
+    bottom: 0%;
+    right: 5%;
+}
+
+
+/* Back Card */
+.backCard{
+    background-image: url('./images/bg-card-back.png');
+    background-repeat: no-repeat;
+    height: 245px;
+    width: 447px;
+    position: absolute;
+    top: 55%;
+    left: 15%;
+}
+
+.cardBack{
+    color: white;
+    position: absolute;
+    top: 41%;
+    left: 80%;
+    transform: translate(-50%,-50%);
+}
+
+
+/* Form */
+form{
+    width: 370px;
+    height: 300px;
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translate(0,-50%);
+    letter-spacing: 1px;
+}
+
+input{
+    height: 30px;
+    border: 1px solid rgb(117, 117, 117);
+    border-radius: 5px;
+    margin: 3px 0 -10px 0;
+    padding: 5px 5px 5px 15px;
+}
+
+#carHolder{
+    width: 80%;
+}
+
+#cardNumber{
+    width: 80%;
+}
+
+.date-cvc-Div{
+    display: flex;
+    flex-direction: row;
+}
+
+.date-input-div{
+    display: flex;
+    flex-direction: row;
+}
+
+.date-input-div input{
+    width: 30%;
+}
+
+#expDateYY{
+    margin-left: 10px;
+}
+
+.formDateDiv{
+    width: 48%;
+}
+
+.formCVCDiv{
+    width: 35%;
+}
+
+#cvc{
+    width: 90%;
+}
+
+button{
+    width: 85%;
+    height: 35px;
+    margin: 20px 0 10px 0;
+}
+
+/* Wrong Field*/
+.alert{
+    color: red;
+    width: 100%;
+    letter-spacing: 2px;
 }
 

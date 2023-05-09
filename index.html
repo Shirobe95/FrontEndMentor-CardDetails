@@ -16,8 +16,10 @@
   <div class="container">
 
     <div class="frontCard">
-      <div class="circ1"></div>
-      <div class="circ2"></div>
+      <div class="circl">
+        <div class="circ1"></div>
+        <div class="circ2"></div>
+      </div>
       <h1 class="cardNumber">0000 0000 0000 0000</h1>
       <h2 class="cardName">Jane Appleseed</h2>
       <h2 class="cardDate">09/23</h2>
@@ -28,26 +30,42 @@
     </div>
   
     <form>
-      <label for="carHolder">Cardholder Name</label>
-      <input type="text" name="carHolder" id="carHolder" placeholder="e.g. Jane Appleseed">
-      <label for="cardNumber">Card Number</label>
-      <input type="text" name="cardNumber" id="cardNumber" placeholder="e.g. 1234 5678 9123 0000">
-      <label for="expDate">Exp. Date (MM/YY)</label>
-      <input type="text" name="expDate" id="expDateMM" placeholder="MM">
-      <input type="text" name="expDate" id="expDateYY" placeholder="YY">
-      <label for="cvc">CVC</label>
-      <input type="text" name="cvc" id="cvc" placeholder="e.g. 123">
+      
+      <div>
+        <label for="carHolder">CARDHOLDER NAME</label>
+        <input type="text" name="carHolder" id="carHolder" placeholder="e.g. Jane Appleseed">
+        <p class="alert" id="alertName">Can't be blank</p>
+      </div>
+      
+      <div>
+        <label for="cardNumber">CARD NUMBER</label>
+        <input type="text" name="cardNumber" id="cardNumber" placeholder="e.g. 1234 5678 9123 0000" maxlength="16">
+        <p class="alert" id="alertNumber">Wrong format, numbers only</p>
+      </div>
+      
+      <div class="date-cvc-Div">
+        <div class="formDateDiv">
+          <label for="expDate" id="dateLabel">EXP. DATE (MM/YY)</label>
+          <div class="date-input-div">
+            <input type="text" name="expDate" id="expDateMM" placeholder="MM" maxlength="2">
+            <input type="text" name="expDate" id="expDateYY" placeholder="YY" maxlength="2">
+          </div>
+          <p class="alert" id="alertDate">Can't be blank</p>
+        </div>
+        <div class="formCVCDiv">
+          <label for="cvc">CVC</label>
+          <input type="text" name="cvc" id="cvc" placeholder="e.g. 123" maxlength="3">
+          <p class="alert" id="alertName">Can't be blank</p>
+        </div>
+      </div>
+      
+      <button type="submit">Confirm</button>
     </form>
 
-
-
-    <!-- Completed state start -->
   </div>
 
-  
 
 
-  
-
+  <script src="index.js"></script>
 </body>
 </html>
