@@ -1,7 +1,14 @@
+@font-face {
+    font-family: 'SpaceGrotesk';
+    src: url('./font/SpaceGrotesk-VariableFont_wght.ttf');
+}
+
 body{
     margin: 0;
     padding: 0;
     background-color: white;
+    font-family: 'SpaceGrotesk';
+    font-weight: 500;
 }
 
 .container{
@@ -95,6 +102,11 @@ body{
 
 
 /* Form */
+
+.formToCompleteHide{
+    display: none;
+}
+
 form{
     width: 370px;
     height: 300px;
@@ -111,6 +123,10 @@ input{
     border-radius: 5px;
     margin: 3px 0 -10px 0;
     padding: 5px 5px 5px 15px;
+}
+
+input:active{
+    border: hsl(249, 99%, 64%) to hsl(278, 94%, 30%);
 }
 
 #cardHolder{
@@ -162,5 +178,25 @@ button{
     color: red;
     width: 100%;
     letter-spacing: 2px;
+    visibility: hidden;
 }
 
+/* Form Completed */
+.formCompleted{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.formCompleted h1{
+    margin-top: 50px;
+}
+
+.formCompleted h3{
+    color: rgb(68, 68, 68);
+}
+
+.formCompletedHide{
+    display: none;
+}
