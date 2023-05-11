@@ -8,7 +8,6 @@ body{
     padding: 0;
     background-color: white;
     font-family: 'SpaceGrotesk';
-    font-weight: 500;
 }
 
 .container{
@@ -16,7 +15,7 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 90%;
+    width: 1372px;
     height: 90%;
     background-image: url('./images/bg-main-desktop.png');
     background-repeat: no-repeat;
@@ -31,7 +30,7 @@ body{
     width: 447px;
     position: absolute;
     top: 20%;
-    left: 10%;
+    left: 15%;
     color: white;
 }
 
@@ -89,7 +88,7 @@ body{
     width: 447px;
     position: absolute;
     top: 55%;
-    left: 15%;
+    left: 20%;
 }
 
 .cardBack{
@@ -112,7 +111,7 @@ form{
     height: 300px;
     position: absolute;
     right: 5%;
-    top: 50%;
+    top: 45%;
     transform: translate(0,-50%);
     letter-spacing: 1px;
 }
@@ -126,7 +125,7 @@ input{
 }
 
 input:active{
-    border: hsl(249, 99%, 64%) to hsl(278, 94%, 30%);
+    border: hsl(249, 99%, 64%);
 }
 
 #cardHolder{
@@ -169,13 +168,24 @@ input:active{
 
 button{
     width: 85%;
-    height: 35px;
-    margin: 20px 0 10px 0;
+    height: 45px;
+    margin: 10px 0 10px 0;
+    background: hsl(278, 68%, 11%);
+    border: none;
+    color: white;
+    font-family: 'SpaceGrotesk';
+    font-weight: 500;
+    letter-spacing: 2px;
+    border-radius: 10px;
+}
+
+button:hover{
+    background: hsl(279, 6%, 55%);
 }
 
 /* Wrong Field*/
 .alert{
-    color: red;
+    color: hsl(0, 100%, 66%);
     width: 100%;
     letter-spacing: 2px;
     visibility: hidden;
@@ -199,4 +209,91 @@ button{
 
 .formCompletedHide{
     display: none;
+}
+
+
+
+/* Mobile Stye */
+
+@media screen and (max-width : 500px){
+    .container{
+        margin: 0;
+        padding: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        transform: translate(0,0);
+        background-size: 100% 30%;
+    }
+
+    .frontCard{
+        height: 165px;
+        width: 300px;
+        background-size: cover;
+        left: 10%;
+        border-radius: 10px;
+        z-index: 2;
+    }
+
+    .backCard{
+        height: 165px;
+        width: 300px;
+        background-size: cover;
+        top: 5%;
+        left: 30%;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+    form{
+        top: 50%;
+        left: 18%;
+        right: 0;
+        transform: translate(0,0);
+    }
+
+    .circl{
+        width: 70px;
+        left: 2%;
+    }
+
+    .circ1{
+        height: 30px;
+        width: 30px;
+    }
+
+    .circ2{
+        height: 15px;
+        width: 15px;
+    }
+
+    .cardNumber{
+        font-size: 20px;
+        top: 40%;
+    }
+
+    .cardName{
+        font-size: 15px;
+    }
+
+    .cardDate{
+        font-size: 15px;
+    } 
+    
+    .cardBack{
+        font-size: 20px;
+        color: white;
+        position: absolute;
+        top: 40%;
+        left: 80%;
+        transform: translate(-50%,-50%);
+    }
+
+    .formCompleted{
+        top: 10%;
+        left: -15%;
+        right: 0;
+        transform: translate(0,0);
+        position: absolute;
+    }
 }
