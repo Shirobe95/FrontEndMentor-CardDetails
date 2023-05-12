@@ -1,3 +1,5 @@
+
+// Getting HTML Elements
 const cardNumberShow = document.querySelector('.cardNumber');
 const cardNameShow = document.querySelector('.cardName');
 const cardDateShow = document.querySelector('.cardDate');
@@ -12,7 +14,8 @@ const cardCVCInput = document.getElementById('cvc');
 const confirmBtn = document.querySelector('#confirmBtn');
 
 
-/* Add a event listener when the input is changed */
+/* Add a event listener when the input is changed and adding whitespace every 4 numbers */
+// Number Field
 cardNumberInput.addEventListener('input', ()=>{
 
     let number = cardNumberInput.value;
@@ -28,9 +31,14 @@ cardNumberInput.addEventListener('input', ()=>{
     let slice3 = number.slice(8,12);
     let slice4 = number.slice(12,16);
     let numberTransformed = slice1 + ' ' + slice2 + ' ' + slice3 + ' ' + slice4
+
+    // Update displayed card numbers
     cardNumberShow.innerHTML = numberTransformed;
 });
 
+
+// Update displayed fields on card after an input
+// Name Field
 cardNameInput.addEventListener('input', ()=>{
     if(cardNameInput.value == ''){
         cardNameShow.innerHTML = 'Name';
@@ -39,6 +47,7 @@ cardNameInput.addEventListener('input', ()=>{
     }
 });
 
+// Month Field
 cardMMDateInput.addEventListener('input' , ()=>{
     let input = cardMMDateInput.value;
 
@@ -56,6 +65,7 @@ cardMMDateInput.addEventListener('input' , ()=>{
 
 })
 
+// Year Field
 cardYYDateInput.addEventListener('input' , ()=>{
     let input = cardYYDateInput.value;
 
@@ -73,7 +83,7 @@ cardYYDateInput.addEventListener('input' , ()=>{
 
 })
 
-
+// CVC Field
 cardCVCInput.addEventListener('input', ()=>{
     let number = cardCVCInput.value;
 
@@ -86,7 +96,7 @@ cardCVCInput.addEventListener('input', ()=>{
     cardCVCShow.innerHTML = number;
 });
 
-
+// Remove animations after 0.5s
 function turnAnimationsOff(){
     setTimeout(() => {
         cardNameInput.style.animation = '';
@@ -97,6 +107,7 @@ function turnAnimationsOff(){
     }, 500);
 }
 
+// Function to display warning on entering : Input Component,Warning Componen and Text to Display
 function showWarning(componentInput,warningComponent,warningText){
     warningComponent.innerHTML = warningText;
     warningComponent.style.visibility = 'visible';
@@ -107,20 +118,25 @@ function showWarning(componentInput,warningComponent,warningText){
     turnAnimationsOff();
 }
 
+// Function to hide warning on entering : Input Component,Warning Componen
 function hideWarning(componentInput,warningComponent){
     componentInput.style.border = '1px solid rgb(117, 117, 117)';
     warningComponent.style.visibility = 'hidden';
 }
 
+// Add a event Listener on Summit
 confirmBtn.addEventListener('click', function(event){
+    // Prevent default false flag
     event.preventDefault();
 
+    // Flags of forms fields
     let wrongName = false;
     let wrongNumber = false;
     let wrongMMDate = false;
     let wrongYYDate = false;
     let wrongCVC = false;
 
+    // Function to detect letters in Input Fields
     function containsLetter(string){
         for(let i=0 ; i<string.length ; i++){
             if(isNaN(string[i])){
@@ -130,6 +146,7 @@ confirmBtn.addEventListener('click', function(event){
         return false;
     }
 
+    // Name Input Validation
     if(cardNameInput.value == ''){
         showWarning(cardNameInput,document.getElementById('alertName'),"Can't be blank");
         wrongName = true;
@@ -139,6 +156,7 @@ confirmBtn.addEventListener('click', function(event){
         wrongName = false;
     }
 
+    // Number Input Validation
     if(cardNumberInput.value == ''){
         showWarning(cardNumberInput,document.getElementById('alertNumber'),"Can't be blank");
         wrongNumber = true ;
@@ -153,6 +171,7 @@ confirmBtn.addEventListener('click', function(event){
         wrongNumber = false ;
     }
 
+    // Month Date Input Validation
     if(cardMMDateInput.value == ''){
         showWarning(cardMMDateInput,document.getElementById('alertDate'),"Can't be blank");
         wrongMMDate = true;
@@ -167,6 +186,7 @@ confirmBtn.addEventListener('click', function(event){
         wrongMMDate = false;
     }
     
+    // Year Date Input Validation
     if(cardYYDateInput.value == ''){
         showWarning(cardYYDateInput,document.getElementById('alertDate'),"Can't be blank");
         wrongYYDate = true;
@@ -183,6 +203,7 @@ confirmBtn.addEventListener('click', function(event){
         wrongYYDate = false;
     }
 
+    // CVC Input Validation
     if(cardCVCInput.value == ''){
         showWarning(cardCVCInput,document.getElementById('alertCVC'),"Can't be blank");
         wrongCVC = true;
@@ -194,6 +215,7 @@ confirmBtn.addEventListener('click', function(event){
         wrongCVC = false;
     }
 
+    // Conditional to complete entry
     if( !wrongName && !wrongNumber && !wrongMMDate && !wrongYYDate && !wrongCVC){
         document.getElementById('completedForm').classList.remove('formCompletedHide');
         document.getElementById('formToComplete').classList.add('formToCompleteHide');
