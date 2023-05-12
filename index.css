@@ -128,6 +128,10 @@ input:active{
     border: hsl(249, 99%, 64%);
 }
 
+.cardHolderDiv{
+    width: 100%;
+}
+
 #cardHolder{
     width: 80%;
 }
@@ -181,6 +185,7 @@ button{
 
 button:hover{
     background: hsl(279, 6%, 55%);
+    cursor: pointer;
 }
 
 /* Wrong Field*/
@@ -284,7 +289,7 @@ button:hover{
         font-size: 20px;
         color: white;
         position: absolute;
-        top: 40%;
+        top: 39%;
         left: 80%;
         transform: translate(-50%,-50%);
     }
