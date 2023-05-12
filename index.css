@@ -196,6 +196,21 @@ button:hover{
     visibility: hidden;
 }
 
+@keyframes wrongfiled {
+    0%{
+        transform: translateX(5px);
+    }
+    25%{
+        transform: translateX(-5px); 
+    }
+    50%{
+        transform: translateX(5px);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
 /* Form Completed */
 .formCompleted{
     display: flex;

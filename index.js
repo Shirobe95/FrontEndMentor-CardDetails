@@ -11,7 +11,6 @@ const cardCVCInput = document.getElementById('cvc');
 
 const confirmBtn = document.querySelector('#confirmBtn');
 
-const cardInputAlert = document.getElementById('alertNumber');
 
 /* Add a event listener when the input is changed */
 cardNumberInput.addEventListener('input', ()=>{
@@ -88,45 +87,39 @@ cardCVCInput.addEventListener('input', ()=>{
 });
 
 
+function turnAnimationsOff(){
+    setTimeout(() => {
+        cardNameInput.style.animation = '';
+        cardNumberInput.style.animation = '';
+        cardMMDateInput.style.animation = '';
+        cardYYDateInput.style.animation = '';
+        cardCVCInput.style.animation = '';
+    }, 500);
+}
+
+function showWarning(componentInput,warningComponent,warningText){
+    warningComponent.innerHTML = warningText;
+    warningComponent.style.visibility = 'visible';
+
+    componentInput.style.border = ' 1px solid hsl(0, 100%, 66%)';
+    componentInput.style.animation = 'wrongfiled 0.5s linear';
+
+    turnAnimationsOff();
+}
+
+function hideWarning(componentInput,warningComponent){
+    componentInput.style.border = '1px solid rgb(117, 117, 117)';
+    warningComponent.style.visibility = 'hidden';
+}
+
 confirmBtn.addEventListener('click', function(event){
     event.preventDefault();
 
     let wrongName = false;
     let wrongNumber = false;
-    let wrongDate = false;
+    let wrongMMDate = false;
+    let wrongYYDate = false;
     let wrongCVC = false;
-
-    if(cardNameInput.value == ''){
-        document.getElementById('alertName').style.visibility = 'visible';
-        cardNameInput.style.border = ' 1px solid hsl(0, 100%, 66%)';
-        wrongName = true;
-    }
-    else{
-        document.getElementById('alertName').style.visibility = 'hidden';
-        cardNameInput.style.border = '1px solid rgb(117, 117, 117)';
-        wrongName = false;
-    }
-
-    if(cardNumberInput.value == ''){
-        cardInputAlert.innerHTML = "Can't be blank";
-        cardInputAlert.style.visibility = 'visible';
-        cardNumberInput.style.border = ' 1px solid hsl(0, 100%, 66%)';
-        wrongNumber = true ;
-    }else if(cardNumberInput.value.length != 16){
-        cardInputAlert.innerHTML = "Missing numbers";
-        cardInputAlert.style.visibility = 'visible';
-        cardNumberInput.style.border = ' 1px solid hsl(0, 100%, 66%)';
-        wrongNumber = true ;
-    }else if(containsLetter(cardNumberInput.value)){
-        cardInputAlert.innerHTML = "Wrong format, numbers only";
-        cardInputAlert.style.visibility = 'visible';
-        cardNumberInput.style.border = ' 1px solid hsl(0, 100%, 66%)';
-        wrongNumber = true ;
-    }else{
-        cardInputAlert.style.visibility = 'hidden';
-        cardNumberInput.style.border = '1px solid rgb(117, 117, 117)';
-        wrongNumber = false ;
-    }
 
     function containsLetter(string){
         for(let i=0 ; i<string.length ; i++){
@@ -137,51 +130,71 @@ confirmBtn.addEventListener('click', function(event){
         return false;
     }
 
-    if(cardMMDateInput.value == '' || cardYYDateInput.value == ''){
-        document.getElementById('alertDate').style.visibility = 'visible';
-        cardMMDateInput.style.border = ' 1px solid hsl(0, 100%, 66%)';
-        cardYYDateInput.style.border = ' 1px solid hsl(0, 100%, 66%)';
-        wrongDate = true;
-    }else if(containsLetter(cardMMDateInput.value) || containsLetter(cardYYDateInput.value)){
-        document.getElementById('alertDate').innerHTML = 'Numbers only';
-        document.getElementById('alertDate').style.visibility = 'visible';
-        cardMMDateInput.style.border = ' 1px solid hsl(0, 100%, 66%)';
-        wrongDate = true;
-    }else if(parseInt(cardMMDateInput.value) > 12 || parseInt(cardMMDateInput.value) < 1){
-        document.getElementById('alertDate').innerHTML = 'Wrong Month';
-        document.getElementById('alertDate').style.visibility = 'visible';
-        cardMMDateInput.style.border = ' 1px solid hsl(0, 100%, 66%)';
-        wrongDate = true;
-    }else if(parseInt(cardYYDateInput.value) < 23 ){
-        document.getElementById('alertDate').innerHTML = 'Wrong Year';
-        document.getElementById('alertDate').style.visibility = 'visible';
-        cardYYDateInput.style.border = ' 1px solid hsl(0, 100%, 66%)';
-        wrongDate = true;
+    if(cardNameInput.value == ''){
+        showWarning(cardNameInput,document.getElementById('alertName'),"Can't be blank");
+        wrongName = true;
+    }
+    else{
+        hideWarning(cardNameInput,document.getElementById('alertName'));
+        wrongName = false;
+    }
+
+    if(cardNumberInput.value == ''){
+        showWarning(cardNumberInput,document.getElementById('alertNumber'),"Can't be blank");
+        wrongNumber = true ;
+    }else if(cardNumberInput.value.length != 16){
+        showWarning(cardNumberInput,document.getElementById('alertNumber'),"Missing numbers");
+        wrongNumber = true ;
+    }else if(containsLetter(cardNumberInput.value)){
+        showWarning(cardNumberInput,document.getElementById('alertNumber'),"Wrong format, numbers only");
+        wrongNumber = true ;
     }else{
-        document.getElementById('alertDate').style.visibility = 'hidden';
-        cardMMDateInput.style.border = '1px solid rgb(117, 117, 117)';
-        cardYYDateInput.style.border = '1px solid rgb(117, 117, 117)';
-        wrongDate = false;
+        hideWarning(cardNumberInput,document.getElementById('alertNumber'));
+        wrongNumber = false ;
+    }
+
+    if(cardMMDateInput.value == ''){
+        showWarning(cardMMDateInput,document.getElementById('alertDate'),"Can't be blank");
+        wrongMMDate = true;
+    }else if(containsLetter(cardMMDateInput.value)){
+        showWarning(cardMMDateInput,document.getElementById('alertDate'),"Numbers only");
+        wrongMMDate = true;
+    }else if(parseInt(cardMMDateInput.value) > 12 || parseInt(cardMMDateInput.value) < 1){
+        showWarning(cardMMDateInput,document.getElementById('alertDate'),"Wrong Month");
+        wrongMMDate = true;
+    }else{
+        hideWarning(cardMMDateInput,document.getElementById('alertDate'));
+        wrongMMDate = false;
+    }
+    
+    if(cardYYDateInput.value == ''){
+        showWarning(cardYYDateInput,document.getElementById('alertDate'),"Can't be blank");
+        wrongYYDate = true;
+    }else if(containsLetter(cardYYDateInput.value)){
+        showWarning(cardYYDateInput,document.getElementById('alertDate'),"Numbers only");
+        wrongYYDate = true;
+    }else if(parseInt(cardYYDateInput.value) < 23 ){
+        showWarning(cardYYDateInput,document.getElementById('alertDate'),"Wrong Year");
+        wrongYYDate = true;
+    }else{
+        if(!wrongMMDate){
+            hideWarning(cardYYDateInput,document.getElementById('alertDate'));
+        }
+        wrongYYDate = false;
     }
 
     if(cardCVCInput.value == ''){
-        document.getElementById('alertCVC').innerHTML = "Can't be blank";
-        document.getElementById('alertCVC').style.visibility = 'visible';
-        cardCVCInput.style.border = ' 1px solid hsl(0, 100%, 66%)';
+        showWarning(cardCVCInput,document.getElementById('alertCVC'),"Can't be blank");
         wrongCVC = true;
     }else if(containsLetter(cardCVCInput.value)){
-        document.getElementById('alertCVC').innerHTML = 'Numbers Only';
-        document.getElementById('alertCVC').style.visibility = 'visible';
-        cardCVCInput.style.border = ' 1px solid hsl(0, 100%, 66%)';
+        showWarning(cardCVCInput,document.getElementById('alertCVC'),"Numbers only");
         wrongCVC = true;
     }else{
-        document.getElementById('alertCVC').style.visibility = 'hidden';
-        cardCVCInput.style.border = '1px solid rgb(117, 117, 117)';
+        hideWarning(cardCVCInput,document.getElementById('alertCVC'));
         wrongCVC = false;
     }
 
-    if( !wrongName && !wrongNumber && !wrongDate && !wrongCVC){
-        console.log('All Good');
+    if( !wrongName && !wrongNumber && !wrongMMDate && !wrongYYDate && !wrongCVC){
         document.getElementById('completedForm').classList.remove('formCompletedHide');
         document.getElementById('formToComplete').classList.add('formToCompleteHide');
     }
