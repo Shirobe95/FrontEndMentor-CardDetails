@@ -118,18 +118,19 @@ form{
 
 input{
     height: 30px;
-    border: 1px solid rgb(117, 117, 117);
+    border: 1px solid hsl(278, 68%, 11%);
     border-radius: 5px;
-    margin: 3px 0 -10px 0;
-    padding: 5px 5px 5px 15px;
+    margin: 3px 3px -10px 5px;
+    padding: 5px 0 5px 15px;
 }
 
 input:active{
     border: hsl(249, 99%, 64%);
 }
 
-.cardHolderDiv{
-    width: 100%;
+.cardDiv{
+    border: 1px solid red;
+    padding: 0;
 }
 
 #cardHolder{
@@ -236,6 +237,10 @@ button:hover{
 /* Mobile Stye */
 
 @media screen and (max-width : 500px){
+    body{
+        overflow-x: hidden;
+    }
+
     .container{
         margin: 0;
         padding: 0;
