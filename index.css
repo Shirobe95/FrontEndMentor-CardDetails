@@ -263,7 +263,7 @@ button:hover{
         width: 300px;
         background-size: cover;
         top: 5%;
-        left: 30%;
+        right: 10%;
         border-radius: 10px;
         z-index: 1;
     }
